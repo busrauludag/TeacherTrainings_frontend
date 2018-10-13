@@ -3,5 +3,5 @@ export class Author{
     firstName:string;
     lastName:string;
     email:string;
-    bio:string
+    biography:string
 }
