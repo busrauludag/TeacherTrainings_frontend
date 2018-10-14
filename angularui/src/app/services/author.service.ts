@@ -13,6 +13,6 @@ export class AuthorService {
   path = environment.path;
 
   getAuthors():Observable<Author[]>{
-    return this.http.get<Author[]>(this.path + '/author')
+    return this.http.get<Author[]>(this.path + '/author');
   }
 }
