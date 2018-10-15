@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { AuthorComponent } from './components/author/author.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 
 const routes = [
@@ -16,7 +17,7 @@ const routes = [
     component: AuthorComponent
   },
   {
-    path:'loign',
+    path:'login',
     component: LoginComponent
   },
   {
@@ -42,9 +43,15 @@ const routes = [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    RouterModule.forRoot(routes);
+    RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [
+    { 
+      provide: HTTP_INTERCEPTORS, 
+      useClass:AuthInterceptorService, // kullanacağı servisi tanımla
+      multi: true // birden fazla gönderebilmek için
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
