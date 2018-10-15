@@ -16,7 +16,7 @@ export class AuthService {
     let headers = new HttpHeaders();
     headers = headers.append("Content-Type", "application/json");
     this.http.post(this.path + '/user/register', registerUser, {headers:headers}).subscribe(data => {
-      
+      console.log(data);
     })
   }
 }
