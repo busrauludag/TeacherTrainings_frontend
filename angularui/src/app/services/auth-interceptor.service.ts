@@ -17,7 +17,7 @@ export class AuthInterceptorService implements HttpInterceptor{
     var authService = this.injector.get(AuthService);  // servisi inject ediyoruz
 
     var authRequest = request.clone({
-      headers: request.headers.set('authorization', 'token '+authService.token);
+      headers: request.headers.set('authorization', 'token '+authService.token)
     })
     return next.handle(authRequest);
   }
